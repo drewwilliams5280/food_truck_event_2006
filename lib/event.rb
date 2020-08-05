@@ -14,4 +14,10 @@ class Event
     @food_trucks.map {|truck| truck.name}
   end
 
+  def food_trucks_that_sell(item)
+    @food_trucks.find_all do |truck|
+      truck.check_stock(item) >= 1
+    end
+  end
+
 end
