@@ -54,4 +54,25 @@ class Event
     all_items.map {|item| item.name}.sort
   end
 
+  def sell(item, quantity)
+    if quantity <= total_quantity(item) && all_items.include?(item)
+      return true
+      sell_stock(item, quantity)
+    else
+      return false
+    end
+  end
+
+  def sell_stock(item, quantity)
+    food_trucks_that_sell(item).each do |truck|
+      if truck.check_stock(item) >= quantity
+        truck.inventory[item] -= quantity
+        quantity = 0
+      else
+        quantity = quantity - truck.inventory[item]
+        truck.inventory[item] = 0
+      end
+    end
+  end
+
 end
