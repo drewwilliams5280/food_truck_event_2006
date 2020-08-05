@@ -44,4 +44,10 @@ class Event
     inventory
   end
 
+  def overstocked_items
+    all_items.find_all do |item|
+      total_quantity(item) > 50 && food_trucks_that_sell(item).count > 1
+    end
+  end
+
 end
