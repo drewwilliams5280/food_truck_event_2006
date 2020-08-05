@@ -50,4 +50,8 @@ class Event
     end
   end
 
+  def sorted_item_list
+    all_items.map {|item| item.name}.sort
+  end
+
 end
