@@ -10,6 +10,14 @@ class FoodTruckTest < Minitest::Test
     food_truck = FoodTruck.new("Rocky Mountain Pies")
     assert_instance_of FoodTruck, food_truck
     assert_equal "Rocky Mountain Pies", food_truck.name
+    assert_equal Hash.new, food_truck.inventory
+  end
+
+  def test_it_can_check_stock_of_item
+    food_truck = FoodTruck.new("Rocky Mountain Pies")
+    item1 = Item.new({name: 'Peach Pie (Slice)', price: "$3.75"})
+    item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
+    assert_equal 0, food_truck.check_stock(item1)
   end
 
 
